@@ -15,4 +15,13 @@ class TwilioController < ApplicationController
 
     render_twiml response
   end
+
+  def text
+    @client = Twilio::REST::Client.new ENV['twilio_sid'], ENV['twilio_token']
+    @client.messages.create(
+      from: '+12175824256',
+      to: '+12177665820',
+      body: 'Hey there!'
+    )
+  end
 end
